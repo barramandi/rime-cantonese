@@ -85,18 +85,30 @@ speller:
   delimiter: " '"
   algebra:
     # 取消下兩行註釋，支援疑影交替： ng- 通 Ø-，Ø- 通 ng-
-    #- derive/^ng([aeiou])/$1/
-    #- derive/^([aeiou])/ng$1/
+    - derive/^ng([aeiou])/$1/
+    - derive/^([aeiou])/ng$1/
 
     # 取消下行註釋，支援泥來合流： n- 併入 l- ，如「你」讀若「理」
-    #- derive/^n(?!g)/l/
+    - derive/^n(?!g)/l/
 
     # 取消下行註釋，支援圓唇輔音合口韻缺位： gw-, kw- 併入 g-, k- ，如「國」讀若「各」、「廓」讀若「確」
-    #- derive/^(g|k)w/$1/
+    - derive/^(g|k)w/$1/
 
     # 取消下行註釋，支援獨立鼻音韻 ng 併入 m，如「吳」讀若「唔」
-    #- derive/^ng([123456])$/m$1/
+    - derive/^ng([123456])$/m$1/
+    
+    # fuzzy match addition by Bala
+    - derive/^s([aeiou])/sh$1/   #fuzzy match s with sh
+    - derive/^b([aeiou])/p$1/   #fuzzy match p with b
+    - derive/^g([aeiou])/k$1/   #fuzzy match g with k
+    - derive/^z([aeiouy])/j$1/   #fuzzy match z with j
+    - derive/^z([aiu])/t$1/   #fuzzy match z with t for short forms
+    - derive/^z([aeiou])/ts$1/   #fuzzy match z with ts
+    #- derive/^cy([iou])/ch$1/  # cy/ch
+    - derive/^cy([iou])/ts$1/  # cy/ts    
+    - derive/^c([aeiouy])/ch$1/  # c/ch
 
+    
     - derive/[123456]//           # 忽略聲調
     - xform/1/v/                  # 陰平
     - xform/4/vv/                 # 陽平
@@ -107,14 +119,23 @@ speller:
     - derive/^([aeiou])/q$1/      # 增加 q 表示喉塞
     - derive/^jy?([aeiou])/y$1/   # 容錯 je -> ye, jyu -> yu
     - derive/^jyu/ju/             # 容錯 jyu -> ju
-    - derive/yu/y/                # 容錯 jyu -> jy
+    #- derive/yu/y/               # 容錯 jyu -> jy
+    #- derive/yut$/uet/           # Bala yut and uet ie. syut = suet
+    - derive/^yu?([tn])/yue$1/          # Bala yu*/yue*
+    - derive/yu(t|n)$/ue$1/       # Bala *yu(t|n)/*ue(t|n)
+    - derive/yu$/hue/             # Bala *yu/*hue
     - derive/eoi$/oey/            # 容錯
     - derive/eoi$/eoy/            # 容錯
     - derive/eo/oe/               # 容錯 eo/oe 不分
+    - derive/eoi$/ui/             # Bala eoi/ui 
     - derive/oe(ng|k)$/eo$1/      # 容錯
+    - derive/oeng$/eung/          # Bala oe/eu ng
+    - derive/oe(n|t|k)$/u$1/      # Bala *oe/*u n/t/k
+    - derive/aa([iutpknm])/a$1/   # Bala aa/a 
     - derive/aa$/a/               # 容錯
     - abbrev/^([a-z]).+$/$1/      # 首字母簡拼
     - abbrev/^([a-z]{2}).+$/$1/   # 首2字母簡拼
+    - abbrev/^([a-z]{3}).+$/$1/   # Bala 首3字母簡拼
 
 translator:
   dictionary: jyut6ping3

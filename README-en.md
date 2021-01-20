@@ -1,6 +1,6 @@
 [粵語](README.md) | [官話](README-cmn.md)
 
-<h1 align="center">Rime Cantonese Input</h1>
+<h1 align="center">Rime Cantonese Input with extreme Fuzzy input</h1>
 
 <p align="center">
 <a href="https://github.com/rime/rime-cantonese/issues"><img src="https://img.shields.io/badge/Contributions-Welcomed-1dd3b0?style=for-the-badge&logo=github"/></a>
@@ -56,6 +56,10 @@ While tone markers are not obligatory for typing characters, you may use the fol
 6. qq: Low level, e.g. `siqq`→ 事; Low level checked, e.g. `sikqq` → 食
 
 ### Fuzzy input
+Barra: Added additinal regex matching to mimic that of google keyboard cantonese with the most relaxed spelling matching algoritm so user spend more time typing and less time guessing/learning the spelling of various yut ping standards. Also additional abbreviations like ssp (深水埗), tst (尖沙咀） , etc
+Replace file data/jyut6ping3.lettered.dict.yaml & data/jyut6ping3.schema.yaml and run windows-install.bat (or re-deploy)
+
+Original instructions below:
 
 This schema **does not support by default** any fuzzy or 'lazy' pronunciations, i.e. pairs like **n-/l-** and **&empty;-/ng-** are contrastive. If you want the schema to accommodate for fuzzy pronunciations, uncomment the relevant lines under the `speller/algebra:` section in the schema file. e.g. If you want the input method to support the **n-/l-** → **l-** merger, use:
 
